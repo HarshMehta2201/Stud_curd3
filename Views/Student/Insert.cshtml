@@ -1,0 +1,51 @@
+﻿@model Stud_curd3.ViewModel.StudentViewModel
+@{
+    ViewBag.Title = "Insert";
+}
+
+<div class="col-10 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Insert Student</h4>
+            <form class="forms-sample">
+                <div class="form-group">
+                    @Html.HiddenFor(model => model.Stud_Id)
+                    <label>College Name:</label>
+                    <select id="CollegeName" class="js-example-basic-single w-100">
+                        @foreach (var item in Model.Collages)
+                        {
+                            <option value="@item.Collage_Id">@item.Name</option>
+                        }
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Hobbies:</label>
+                    @foreach (var item in Model.Hobbies)
+                    {
+                        <input type="checkbox" name="Hobbies" value="@item.HobbyId">
+                        <label for="Hobbies">@item.Name</label><br>
+                    }
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputFirstName" id="lblFirstName">First Name:</label>
+                    <input type="text" class="form-control" id="FirstName" value="@Model.FirstName" />
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputLastName" id="lblLastName">Last Name:</label>
+                    <input type="text" class="form-control" id="LastName" value="@Model.LastName" />
+                </div>
+                <div class="form-group">
+                    <label>Gender:</label>
+                    <input type="radio" name="Gender" value="Male">Male
+                    <input type="radio" name="Gender" value="Female">Female
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputAddress" id="lblAddress">Address:</label>
+                    <textarea type="text" cols="50" rows="5" class="form-control" id="Address" value="">@Model.Address</textarea>
+                </div>
+                <button type="button" class="btn btn-primary me-2" onclick="insertStudent()">Submit</button>
+                <button class="btn btn-light">Cancel</button>
+            </form>
+        </div>
+    </div>
+</div>

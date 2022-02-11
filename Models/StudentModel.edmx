@@ -1,0 +1,169 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="instituteModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Collage">
+          <Key>
+            <PropertyRef Name="Collage_Id" />
+          </Key>
+          <Property Name="Collage_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="40" />
+        </EntityType>
+        <EntityType Name="Hobby">
+          <Key>
+            <PropertyRef Name="HobbyId" />
+          </Key>
+          <Property Name="HobbyId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="20" />
+          <Property Name="IsSelected" Type="bit" />
+        </EntityType>
+        <EntityType Name="Stud_Details">
+          <Key>
+            <PropertyRef Name="Stud_ID" />
+          </Key>
+          <Property Name="Stud_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="20" />
+          <Property Name="LastName" Type="varchar" MaxLength="20" />
+          <Property Name="Gender" Type="varchar" MaxLength="10" />
+          <Property Name="Address" Type="nvarchar" MaxLength="100" />
+          <Property Name="Hobbies_Id" Type="nvarchar" MaxLength="30" />
+          <Property Name="Collage_Id" Type="int" />
+        </EntityType>
+        <Association Name="FK__Stud_Deta__Colla__2E1BDC42">
+          <End Role="Collage" Type="Self.Collage" Multiplicity="0..1" />
+          <End Role="Stud_Details" Type="Self.Stud_Details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Collage">
+              <PropertyRef Name="Collage_Id" />
+            </Principal>
+            <Dependent Role="Stud_Details">
+              <PropertyRef Name="Collage_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="instituteModelStoreContainer">
+          <EntitySet Name="Collage" EntityType="Self.Collage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Hobby" EntityType="Self.Hobby" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Stud_Details" EntityType="Self.Stud_Details" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Stud_Deta__Colla__2E1BDC42" Association="Self.FK__Stud_Deta__Colla__2E1BDC42">
+            <End Role="Collage" EntitySet="Collage" />
+            <End Role="Stud_Details" EntitySet="Stud_Details" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="instituteModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="instituteEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Collages" EntityType="instituteModel.Collage" />
+          <EntitySet Name="Hobbies" EntityType="instituteModel.Hobby" />
+          <EntitySet Name="Stud_Details" EntityType="instituteModel.Stud_Details" />
+          <AssociationSet Name="FK__Stud_Deta__Colla__2E1BDC42" Association="instituteModel.FK__Stud_Deta__Colla__2E1BDC42">
+            <End Role="Collage" EntitySet="Collages" />
+            <End Role="Stud_Details" EntitySet="Stud_Details" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Collage">
+          <Key>
+            <PropertyRef Name="Collage_Id" />
+          </Key>
+          <Property Name="Collage_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Stud_Details" Relationship="instituteModel.FK__Stud_Deta__Colla__2E1BDC42" FromRole="Collage" ToRole="Stud_Details" />
+        </EntityType>
+        <EntityType Name="Hobby">
+          <Key>
+            <PropertyRef Name="HobbyId" />
+          </Key>
+          <Property Name="HobbyId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="IsSelected" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="Stud_Details">
+          <Key>
+            <PropertyRef Name="Stud_ID" />
+          </Key>
+          <Property Name="Stud_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Gender" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Hobbies_Id" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Collage_Id" Type="Int32" />
+          <NavigationProperty Name="Collage" Relationship="instituteModel.FK__Stud_Deta__Colla__2E1BDC42" FromRole="Stud_Details" ToRole="Collage" />
+        </EntityType>
+        <Association Name="FK__Stud_Deta__Colla__2E1BDC42">
+          <End Type="instituteModel.Collage" Role="Collage" Multiplicity="0..1" />
+          <End Type="instituteModel.Stud_Details" Role="Stud_Details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Collage">
+              <PropertyRef Name="Collage_Id" />
+            </Principal>
+            <Dependent Role="Stud_Details">
+              <PropertyRef Name="Collage_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="instituteModelStoreContainer" CdmEntityContainer="instituteEntities">
+          <EntitySetMapping Name="Collages">
+            <EntityTypeMapping TypeName="instituteModel.Collage">
+              <MappingFragment StoreEntitySet="Collage">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Collage_Id" ColumnName="Collage_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Hobbies">
+            <EntityTypeMapping TypeName="instituteModel.Hobby">
+              <MappingFragment StoreEntitySet="Hobby">
+                <ScalarProperty Name="IsSelected" ColumnName="IsSelected" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="HobbyId" ColumnName="HobbyId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Stud_Details">
+            <EntityTypeMapping TypeName="instituteModel.Stud_Details">
+              <MappingFragment StoreEntitySet="Stud_Details">
+                <ScalarProperty Name="Collage_Id" ColumnName="Collage_Id" />
+                <ScalarProperty Name="Hobbies_Id" ColumnName="Hobbies_Id" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Stud_ID" ColumnName="Stud_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

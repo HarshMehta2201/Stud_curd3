@@ -1,0 +1,70 @@
+﻿@model IEnumerable<Stud_curd3.ViewModel.StudentViewModel>
+@{
+    ViewBag.Title = "GetStudentList";
+}
+
+<h2>Student List</h2>
+<style>
+    table, th, td {
+        border: 1px solid black;
+    }
+
+    table {
+        width: 100%;
+    }
+</style>
+<div class="main-panel">
+    <div class="content-wrapper">
+        <div class="row">
+            <div class="col-lg-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <h1>@Html.ActionLink("Create New", "Insert")</h1>
+                            <br />
+                            <input id="myInput" type="text" placeholder="Search..">
+                            <br />
+                            <br />
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>College Name</th>
+                                        <th>FirstName</th>
+                                        <th>LastName</th>
+                                        <th>Hobbies</th>
+                                        <th>Gender</th>
+                                        <th>Address</th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody id="myTable">
+                                    @{int RowNo = 0;}
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>@{RowNo++;} @RowNo</td>
+                                            <td>@Html.DisplayFor(modelItem => item.CollageName)</td>
+                                            <td>@Html.DisplayFor(model => item.FirstName)</td>
+                                            <td>@Html.DisplayFor(model => item.LastName)</td>
+                                            <td>@Html.DisplayFor(model => item.HobbyName)</td>
+                                            <td>@Html.DisplayFor(model => item.Gender)</td>
+                                            <td>@Html.DisplayFor(model => item.Address)</td>
+                                            <td>@Html.ActionLink("Edit", "Insert", new { id = item.Stud_Id })</td>
+                                            <td>@Html.ActionLink("Details", "Details", new { id = item.Stud_Id })</td>
+                                            <td>@Html.ActionLink("Delete", "Delete", new { id = item.Stud_Id })</td>
+                                        </tr>
+                                    }
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

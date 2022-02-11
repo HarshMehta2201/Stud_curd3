@@ -1,0 +1,33 @@
+﻿@model Stud_curd3.ViewModel.StudentViewModel
+@{
+    ViewBag.Title = "Details";
+}
+<div class="col-md-4 grid-margin grid-margin-md-0 stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Student Details</h4>
+            <div class="list-star">
+                <label>College Name:</label>
+                @Html.DisplayFor(model => model.CollageName)
+                <br />
+                <label>First Name:</label>
+                @Html.DisplayFor(model => model.FirstName)
+                <br />
+                <label>Last Name:</label>
+                @Html.DisplayFor(model => model.LastName)
+                <br />
+                <label>Hobbies:</label>
+                @Html.DisplayFor(model => model.HobbyName)
+                <br />
+                <label>Gender:</label>
+                @Html.DisplayFor(model => model.Gender)
+                <br />
+                <label>Address:</label>
+                @Html.DisplayFor(model => model.Address)
+            </div>
+            <p>
+                @Html.ActionLink("<<Back", "GetStudentList")
+            </p>
+        </div>
+    </div>
+</div>
